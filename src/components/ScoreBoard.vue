@@ -1,13 +1,13 @@
 <template>
 <section class="score">
-Jogador <span>{{ this.acertosContador }}</span> x <span>{{ this.errosContador }}</span> Computador
+Jogador <span>{{ this.acertosScore }}</span> x <span>{{ this.errosScore }}</span> Computador
 </section>
 </template>
 
 <script>
 export default {
     //props pode ser declarada com array ou objeto 
-    props: ['acertosContador','errosContador']
+    props: ['acertosScore','errosScore']
 }
 </script>
 

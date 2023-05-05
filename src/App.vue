@@ -1,8 +1,8 @@
 <template>
 <div>
     <ScoreBoard 
-    :acertosContador="this.acertosContador" 
-    :errosContador="this.errosContador"/>
+    :acertosScore="this.acertosContador" 
+    :errosScore="this.errosContador"/>
 
     <template v-if="questao">
 
