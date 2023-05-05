@@ -18,11 +18,13 @@
         v-if="!this.respostaEnviada" @click="enviarResposta()">Enviar</button>
 
         <section v-if="this.respostaEnviada" class="resultado">
-        <h4 v-if="this.respostaEscolhida == this.respostaCorreta">
-        &#9989; Parabéns você acertou, a resposta correta é {{ respostaCorreta }}!</h4>
-        <h4 v-else>
-        &#10060; Desculpe você errou, a resposta correta é {{ respostaCorreta }} </h4>
-        <button class="send" type="button" @click="enviarResposta()">Próximo pergunta</button>
+        <h4 v-if="this.respostaEscolhida == this.respostaCorreta"
+        v-html="'&#9989; Parabéns você acertou, a resposta correta é  '+respostaCorreta+'!'">
+        </h4>
+        <h4 v-else
+        v-html="'&#10060; Desculpe você errou, a resposta correta é {'+respostaCorreta+'!'">
+        </h4>
+        <button class="send" type="button" @click="obtemNovaPergunta()">Próximo pergunta</button>
         </section>
     </template>
 
@@ -34,15 +36,7 @@ export default {
     name: 'App',
 
     created() {
-        this.axios
-            .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
-            .then((response) => {
-                this.questao = response.data.results[0].question
-                this.respostasIncorretas = response.data.results[0].incorrect_answers
-                this.respostaCorreta = response.data.results[0].correct_answer
-
-                console.log(response.data.results[0])
-            })
+        this.obtemNovaPergunta()
     },
 
     //funcao para retornar os dados
@@ -69,6 +63,21 @@ export default {
     },
 
     methods: {
+      obtemNovaPergunta() {
+        this.respostaEnviada = false
+        this.respostaEscolhida = undefined
+        
+        this.axios
+            .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
+            .then((response) => {
+                this.questao = response.data.results[0].question
+                this.respostasIncorretas = response.data.results[0].incorrect_answers
+                this.respostaCorreta = response.data.results[0].correct_answer
+
+                console.log(response.data.results[0])
+            })
+
+      },
       enviarResposta() {
         if (!this.respostaEscolhida) {
           alert('Escolha uma resposta antes de prosseguir.')
