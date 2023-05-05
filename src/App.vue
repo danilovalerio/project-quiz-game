@@ -66,6 +66,7 @@ export default {
       obtemNovaPergunta() {
         this.respostaEnviada = false
         this.respostaEscolhida = undefined
+        this.questao = undefined
         
         this.axios
             .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
