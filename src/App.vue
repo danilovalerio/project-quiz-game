@@ -50,6 +50,8 @@ export default {
             respostaCorreta: undefined,
             respostaEscolhida: undefined,
             respostaEnviada: false,
+            acertosContador: 0,
+            errosContador: 0,
         }
     },
 
@@ -86,8 +88,10 @@ export default {
             } else {
                 this.respostaEnviada = true
                 if (this.respostaEscolhida == this.respostaCorreta) {
+                  this.acertosContador++
                     console.log('Parabéns, você acertou!')
                 } else {
+                  this.errosContador++
                     console.log('Não foi dessa vez, resposta incorreta!')
                 }
             }
