@@ -17,8 +17,13 @@
 
 export default {
   name: 'App',
-  components: {
-    
+
+  created() {
+    this.axios
+    .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
+    .then((response) => {
+        console.log(response.data)
+      })
   }
 }
 
