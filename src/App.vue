@@ -22,7 +22,9 @@ export default {
   data(){
     //nesse passo analise o que vai precisar e monte seu objeto para receber os dados
     return {
-
+      questao: undefined,
+      respostasIncorretas: undefined,
+      respostaCorreta: undefined
     }
   },
 
@@ -30,7 +32,11 @@ export default {
     this.axios
     .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
     .then((response) => {
-        console.log(response.data.results[0])
+      this.questao = response.data.results[0].question
+      this.respostasIncorretas = response.data.results[0].incorrect_answers
+      this.respostaCorreta = response.data.results[0].correct_answer
+       
+      console.log(response.data.results[0])
       })
   }
 }
