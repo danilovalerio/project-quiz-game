@@ -10,7 +10,7 @@
             <label v-html="resposta"></label><br>
         </template>
 
-        <button class="send" type="button">Enviar</button>
+        <button class="send" type="button" @click="enviarResposta()">Enviar</button>
     </template>
 
 </div>
@@ -53,6 +53,20 @@ export default {
             return respostas
         }
     },
+
+    methods: {
+      enviarResposta() {
+        if (!this.respostaEscolhida) {
+          alert('Escolha uma resposta antes de prosseguir.')
+        } else {
+          if(this.respostaEscolhida == this.respostaCorreta) {
+            alert('Parabéns, você acertou!')
+          } else {
+            alert('Não foi dessa vez, resposta incorreta!')
+          }
+        }
+      }
+    }
 }
 
 //URL que será consumida
