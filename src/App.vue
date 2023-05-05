@@ -1,15 +1,18 @@
 <template>
 <div>
-    <h1 v-html="questao"></h1>
+    <template v-if="questao">
+
+        <h1 v-html="questao"></h1>
+
+        <template v-for="(resposta, index) in this.respostas" :key="index">
+            <input type="radio" name="options" value="resposta">
+            <label v-html="resposta"></label><br>
+        </template>
+
+        <button class="send" type="button">Enviar</button>
+    </template>
+
 </div>
-
-<input type="radio" name="options" value="True">
-<label>True</label><br>
-
-<input type="radio" name="options" value="False">
-<label>False</label><br>
-
-<button class="send" type="button">Enviar</button>
 </template>
 
 <script>
@@ -40,13 +43,13 @@ export default {
     },
 
     computed: {
-      respostas() {
-        var respostas = JSON.parse(JSON.stringify(this.respostasIncorretas));
-        //random retorna o numero entre 0 e 1 * tamanho do nosso array
-        var posicao = Math.round(Math.random() * respostas.length)
-        respostas.splice(posicao, 0, this.respostaCorreta);
-        return respostas
-      }
+        respostas() {
+            var respostas = JSON.parse(JSON.stringify(this.respostasIncorretas));
+            //random retorna o numero entre 0 e 1 * tamanho do nosso array
+            var posicao = Math.round(Math.random() * respostas.length)
+            respostas.splice(posicao, 0, this.respostaCorreta);
+            return respostas
+        }
     },
 }
 
