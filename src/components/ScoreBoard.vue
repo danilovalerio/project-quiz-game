@@ -1,6 +1,6 @@
 <template>
 <section class="score">
-Jogador <span>0</span> x <span>0</span> Computador
+Jogador <span>{{ this.acertosContador }}</span> x <span>{{ this.errosContador }}</span> Computador
 </section>
 </template>
 
