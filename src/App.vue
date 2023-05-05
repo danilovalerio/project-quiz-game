@@ -1,7 +1,9 @@
 <template>
   <div>
-  <h1>Questão 1</h1>
+  <h1 v-html="questao"></h1>
   </div>
+
+
 
   <input type="radio" name="options" value="True">
   <label>True</label><br>
