@@ -1,13 +1,11 @@
 <template>
-    <div>Score Board Component Teste</div>
-
+<div>Score Board Component Teste</div>
 </template>
 
 <script>
 export default {
 
 }
-
 </script>
 
 <style lang="scss">

@@ -1,33 +1,25 @@
 <template>
 <div>
 
-<ScoreBoard />
+    <ScoreBoard />
 
     <template v-if="questao">
 
         <h1 v-html="questao"></h1>
 
         <template v-for="(resposta, index) in this.respostas" :key="index">
-            <input
-            :disabled="this.respostaEnviada"
-            type="radio" 
-            name="options" 
-            :value="resposta"
-            v-model="respostaEscolhida">
+            <input :disabled="this.respostaEnviada" type="radio" name="options" :value="resposta" v-model="respostaEscolhida">
             <label v-html="resposta"></label><br>
         </template>
 
-        <button class="send" type="button"
-        v-if="!this.respostaEnviada" @click="enviarResposta()">Enviar</button>
+        <button class="send" type="button" v-if="!this.respostaEnviada" @click="enviarResposta()">Enviar</button>
 
         <section v-if="this.respostaEnviada" class="resultado">
-        <h4 v-if="this.respostaEscolhida == this.respostaCorreta"
-        v-html="'&#9989; Parabéns você acertou, a resposta correta é  '+respostaCorreta+'!'">
-        </h4>
-        <h4 v-else
-        v-html="'&#10060; Desculpe você errou, a resposta correta é {'+respostaCorreta+'!'">
-        </h4>
-        <button class="send" type="button" @click="obtemNovaPergunta()">Próximo pergunta</button>
+            <h4 v-if="this.respostaEscolhida == this.respostaCorreta" v-html="'&#9989; Parabéns você acertou, a resposta correta é  '+respostaCorreta+'!'">
+            </h4>
+            <h4 v-else v-html="'&#10060; Desculpe você errou, a resposta correta é {'+respostaCorreta+'!'">
+            </h4>
+            <button class="send" type="button" @click="obtemNovaPergunta()">Próximo pergunta</button>
         </section>
     </template>
 
@@ -41,7 +33,7 @@ export default {
 
     name: 'App',
     components: {
-      ScoreBoard
+        ScoreBoard
     },
 
     created() {
@@ -72,34 +64,34 @@ export default {
     },
 
     methods: {
-      obtemNovaPergunta() {
-        this.respostaEnviada = false
-        this.respostaEscolhida = undefined
-        this.questao = undefined
-        
-        this.axios
-            .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
-            .then((response) => {
-                this.questao = response.data.results[0].question
-                this.respostasIncorretas = response.data.results[0].incorrect_answers
-                this.respostaCorreta = response.data.results[0].correct_answer
+        obtemNovaPergunta() {
+            this.respostaEnviada = false
+            this.respostaEscolhida = undefined
+            this.questao = undefined
 
-                console.log(response.data.results[0])
-            })
+            this.axios
+                .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
+                .then((response) => {
+                    this.questao = response.data.results[0].question
+                    this.respostasIncorretas = response.data.results[0].incorrect_answers
+                    this.respostaCorreta = response.data.results[0].correct_answer
 
-      },
-      enviarResposta() {
-        if (!this.respostaEscolhida) {
-          alert('Escolha uma resposta antes de prosseguir.')
-        } else {
-          this.respostaEnviada = true
-          if(this.respostaEscolhida == this.respostaCorreta) {
-            console.log('Parabéns, você acertou!')
-          } else {
-            console.log('Não foi dessa vez, resposta incorreta!')
-          }
+                    console.log(response.data.results[0])
+                })
+
+        },
+        enviarResposta() {
+            if (!this.respostaEscolhida) {
+                alert('Escolha uma resposta antes de prosseguir.')
+            } else {
+                this.respostaEnviada = true
+                if (this.respostaEscolhida == this.respostaCorreta) {
+                    console.log('Parabéns, você acertou!')
+                } else {
+                    console.log('Não foi dessa vez, resposta incorreta!')
+                }
+            }
         }
-      }
     }
 }
 
