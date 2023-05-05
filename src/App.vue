@@ -1,97 +1,81 @@
 <template>
-  <div>
-  <h1 v-html="questao" v-bind="respostas()"></h1>
-  </div>
+<div>
+    <h1 v-html="questao"></h1>
+</div>
 
+<input type="radio" name="options" value="True">
+<label>True</label><br>
 
+<input type="radio" name="options" value="False">
+<label>False</label><br>
 
-  <input type="radio" name="options" value="True">
-  <label>True</label><br>
-
-  <input type="radio" name="options" value="False">
-  <label>False</label><br>
-
-  <button class="send" type="button">Enviar</button>
-  
+<button class="send" type="button">Enviar</button>
 </template>
 
 <script>
-
 export default {
-  name: 'App',
+    name: 'App',
 
-  created() {
-    this.axios
-    .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
-    .then((response) => {
-      this.questao = response.data.results[0].question
-      this.respostasIncorretas = response.data.results[0].incorrect_answers
-      this.respostaCorreta = response.data.results[0].correct_answer
-       
-      console.log(response.data.results[0])
-      })
-  },
+    created() {
+        this.axios
+            .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
+            .then((response) => {
+                this.questao = response.data.results[0].question
+                this.respostasIncorretas = response.data.results[0].incorrect_answers
+                this.respostaCorreta = response.data.results[0].correct_answer
 
-   //funcao para retornar os dados
-   data(){
-    //nesse passo analise o que vai precisar e monte seu objeto para receber os dados
-    //aqui nao deve ter muito calculos e bla bla bla
-    return {
-      questao: undefined,
-      respostasIncorretas: undefined,
-      respostaCorreta: undefined,
-    }
-  },
+                console.log(response.data.results[0])
+            })
+    },
 
-  methods: {
-    respostas: function(){
-      var opcoes = []
+    //funcao para retornar os dados
+    data() {
+        //nesse passo analise o que vai precisar e monte seu objeto para receber os dados
+        //aqui nao deve ter muito calculos e bla bla bla
+        return {
+            questao: undefined,
+            respostasIncorretas: undefined,
+            respostaCorreta: undefined,
+        }
+    },
 
-      opcoes.push(this.respostaCorreta)
-
-      this.respostasIncorretas.forEach(element => {
-        opcoes.push(element)
-      });
-
-      console.log(opcoes)
-
-      return opcoes
-
-    }
-  }
-
-
+    computed: {
+      respostas() {
+        var respostas = this.respostasIncorretas;
+        respostas.push(this.respostaCorreta);
+        return respostas
+      }
+    },
 }
 
 //URL que será consumida
 //https://opentdb.com/api.php?amount=1&category=18&difficulty=easy
-
 </script>
 
 <style lang="scss">
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-  margin: 60px auto;
-  max-width: 960px;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;
+    color: #2c3e50;
+    margin-top: 60px;
+    margin: 60px auto;
+    max-width: 960px;
 
-  input[type=radio] {
-    margin: 12px 4px;
-  }
+    input[type=radio] {
+        margin: 12px 4px;
+    }
 
-  button.send {
-    margin-top: 12px;
-    height: 40px;
-    min-width: 120px;
-    padding: 0 16px;
-    color: #fff;
-    background-color: #1667c0;
-    border: 1px solid #1667c0;
-    cursor: pointer;
-  }
+    button.send {
+        margin-top: 12px;
+        height: 40px;
+        min-width: 120px;
+        padding: 0 16px;
+        color: #fff;
+        background-color: #1667c0;
+        border: 1px solid #1667c0;
+        cursor: pointer;
+    }
 }
 </style>
