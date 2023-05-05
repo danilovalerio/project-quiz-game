@@ -41,7 +41,7 @@ export default {
 
     computed: {
       respostas() {
-        var respostas = this.respostasIncorretas;
+        var respostas = JSON.parse(JSON.stringify(this.respostasIncorretas));
         respostas.push(this.respostaCorreta);
         return respostas
       }
