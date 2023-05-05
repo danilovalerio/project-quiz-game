@@ -21,6 +21,10 @@ export default {
     
   }
 }
+
+//URL que será consumida
+//https://opentdb.com/api.php?amount=1&category=18&difficulty=easy
+
 </script>
 
 <style lang="scss">
@@ -31,5 +35,22 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+  margin: 60px auto;
+  max-width: 960px;
+
+  input[type=radio] {
+    margin: 12px 4px;
+  }
+
+  button.send {
+    margin-top: 12px;
+    height: 40px;
+    min-width: 120px;
+    padding: 0 16px;
+    color: #fff;
+    background-color: #1667c0;
+    border: 1px solid #1667c0;
+    cursor: pointer;
+  }
 }
 </style>
