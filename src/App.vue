@@ -14,7 +14,16 @@
             <label v-html="resposta"></label><br>
         </template>
 
-        <button class="send" type="button" @click="enviarResposta()">Enviar</button>
+        <button class="send" type="button"
+        v-if="!this.respostaEnviada" @click="enviarResposta()">Enviar</button>
+
+        <section v-if="this.respostaEnviada" class="resultado">
+        <h4 v-if="this.respostaEscolhida == this.respostaCorreta">
+        &#9989; Parabéns você acertou, a resposta correta é {{ respostaCorreta }}!</h4>
+        <h4 v-else>
+        &#10060; Desculpe você errou, a resposta correta é {{ respostaCorreta }} </h4>
+        <button class="send" type="button" @click="enviarResposta()">Próximo pergunta</button>
+        </section>
     </template>
 
 </div>
@@ -66,9 +75,9 @@ export default {
         } else {
           this.respostaEnviada = true
           if(this.respostaEscolhida == this.respostaCorreta) {
-            alert('Parabéns, você acertou!')
+            console.log('Parabéns, você acertou!')
           } else {
-            alert('Não foi dessa vez, resposta incorreta!')
+            console.log('Não foi dessa vez, resposta incorreta!')
           }
         }
       }
