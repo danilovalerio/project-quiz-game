@@ -1,6 +1,6 @@
 <template>
   <div>
-  <h1 v-html="questao"></h1>
+  <h1 v-html="questao" v-bind="respostas()"></h1>
   </div>
 
 
@@ -20,16 +20,6 @@
 export default {
   name: 'App',
 
-  //funcao para retornar os dados
-  data(){
-    //nesse passo analise o que vai precisar e monte seu objeto para receber os dados
-    return {
-      questao: undefined,
-      respostasIncorretas: undefined,
-      respostaCorreta: undefined
-    }
-  },
-
   created() {
     this.axios
     .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
@@ -40,7 +30,37 @@ export default {
        
       console.log(response.data.results[0])
       })
+  },
+
+   //funcao para retornar os dados
+   data(){
+    //nesse passo analise o que vai precisar e monte seu objeto para receber os dados
+    //aqui nao deve ter muito calculos e bla bla bla
+    return {
+      questao: undefined,
+      respostasIncorretas: undefined,
+      respostaCorreta: undefined,
+    }
+  },
+
+  methods: {
+    respostas: function(){
+      var opcoes = []
+
+      opcoes.push(this.respostaCorreta)
+
+      this.respostasIncorretas.forEach(element => {
+        opcoes.push(element)
+      });
+
+      console.log(opcoes)
+
+      return opcoes
+
+    }
   }
+
+
 }
 
 //URL que será consumida
