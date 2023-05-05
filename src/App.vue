@@ -5,7 +5,8 @@
         <h1 v-html="questao"></h1>
 
         <template v-for="(resposta, index) in this.respostas" :key="index">
-            <input type="radio" name="options" value="resposta">
+            <input type="radio" name="options" :value="resposta"
+            v-model="respostaEscolhida">
             <label v-html="resposta"></label><br>
         </template>
 
@@ -39,6 +40,7 @@ export default {
             questao: undefined,
             respostasIncorretas: undefined,
             respostaCorreta: undefined,
+            respostaEscolhida: undefined,
         }
     },
 
