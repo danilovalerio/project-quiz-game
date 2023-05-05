@@ -18,6 +18,14 @@
 export default {
   name: 'App',
 
+  //funcao para retornar os dados
+  data(){
+    //nesse passo analise o que vai precisar e monte seu objeto para receber os dados
+    return {
+
+    }
+  },
+
   created() {
     this.axios
     .get('https://opentdb.com/api.php?amount=1&category=18&difficulty=easy')
