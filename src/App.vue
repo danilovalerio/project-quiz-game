@@ -1,15 +1,24 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+  <h1>Questão 1</h1>
+  </div>
+
+  <input type="radio" name="options" value="True">
+  <label>True</label><br>
+
+  <input type="radio" name="options" value="False">
+  <label>False</label><br>
+
+  <button class="send" type="button">Enviar</button>
+  
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    
   }
 }
 </script>
