@@ -1,5 +1,8 @@
 <template>
 <div>
+
+<ScoreBoard />
+
     <template v-if="questao">
 
         <h1 v-html="questao"></h1>
@@ -32,8 +35,14 @@
 </template>
 
 <script>
+import ScoreBoard from '@/components/ScoreBoard.vue'
+
 export default {
+
     name: 'App',
+    components: {
+      ScoreBoard
+    },
 
     created() {
         this.obtemNovaPergunta()
