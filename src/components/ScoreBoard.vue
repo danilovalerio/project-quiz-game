@@ -6,7 +6,8 @@ Jogador <span>0</span> x <span>0</span> Computador
 
 <script>
 export default {
-
+    //props pode ser declarada com array ou objeto 
+    props: ['acertosContador','errosContador']
 }
 </script>
 
