@@ -42,7 +42,9 @@ export default {
     computed: {
       respostas() {
         var respostas = JSON.parse(JSON.stringify(this.respostasIncorretas));
-        respostas.push(this.respostaCorreta);
+        //random retorna o numero entre 0 e 1 * tamanho do nosso array
+        var posicao = Math.round(Math.random() * respostas.length)
+        respostas.splice(posicao, 0, this.respostaCorreta);
         return respostas
       }
     },
